@@ -1,0 +1,49 @@
+<!--clubInfo.wxml-->
+<view class="member-info">
+  <view class="member-info-row">
+    <view class="member-info-item green">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item blue">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item red">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item yellow">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item dark">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <!-- <view class="member-info-item orange">xx</view> -->
+  </view>
+  <view class="member-info-row">
+    <view class="member-info-item green">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item blue">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item red">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item yellow">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <view class="member-info-item dark">
+      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
+      <text>xxx</text>
+    </view>
+    <!-- <view class="member-info-item orange">xx</view> -->
+  </view>
+</view>

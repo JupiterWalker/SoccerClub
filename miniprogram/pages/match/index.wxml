@@ -1,0 +1,4 @@
+<!--clubInfo.wxml-->
+<view class="club-info">
+  <text>约赛</text>
+</view>

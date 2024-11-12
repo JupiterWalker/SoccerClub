@@ -1,0 +1,10 @@
+.pannel-item {
+  margin-bottom: 32rpx;
+}
+.time {
+  display: flex;
+	padding: 0 20rpx;
+	min-height: 100rpx;
+	font-size: 28rpx;
+	color: #343434;
+}

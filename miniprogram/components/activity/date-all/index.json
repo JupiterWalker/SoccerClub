@@ -1,0 +1,7 @@
+{
+  
+  "usingComponents": {
+    "t-cell": "/components/cell/cell",
+    "t-date-time-picker": "/components/date-time-picker/date-time-picker"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "activity-info": "/components/activity/index",
+    "t-button": "/components/button/button"
+  }
+}

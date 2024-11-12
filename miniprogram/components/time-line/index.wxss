@@ -1,0 +1,87 @@
+page {
+  background-color: #f1f1f1;
+}
+
+/* 容器一 */
+.box {
+  padding: 10rpx 20rpx 10rpx 40rpx;
+}
+
+/* 容器二 */
+.box-line {
+  border-left: 3rpx solid #c8c9cc;
+  padding: 15rpx 10rpx 15rpx 35rpx;
+}
+
+/* 圆点 */
+.point {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15rpx 0;
+}
+
+.dot {
+  margin-left: -22rpx;
+  background-color: #19be6b;
+  box-shadow: 0 0 5rpx 5rpx #71d5a1;
+  color: white;
+  width: 36rpx;
+  padding: 5rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-radius: 50rpx;
+}
+
+.title {
+  font-size: 30rpx;
+  margin-left: 15rpx;
+  background-color: white;
+  padding: 12rpx 25rpx;
+  border-radius: 50rpx;
+  color: #909399;
+}
+
+/* 容器三 */
+.box-data {
+  background-color: white;
+  padding: 30rpx 15rpx;
+  border-radius: 15rpx;
+}
+
+.row-info {
+  font-size: 28rpx;
+  color: gray;
+  line-height: 45rpx;
+  padding: 0 15rpx;
+  text-indent: 2rem;
+}
+
+.row-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1rpx solid #f1f1f1;
+  margin-top: 20rpx;
+  padding-top: 20rpx;
+}
+
+.row-button view {
+  padding: 12rpx 30rpx;
+  font-size: 30rpx;
+  color: white;
+  border-radius: 10rpx;
+}
+
+.row-button view:nth-child(1) {
+  background-color: #ff9900;
+}
+
+.row-button view:nth-child(2) {
+  background-color: #19be6b;
+}
+
+.row-button view:nth-child(3) {
+  background-color: #2979ff;
+}

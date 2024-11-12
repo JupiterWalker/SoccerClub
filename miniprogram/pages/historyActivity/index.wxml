@@ -1,0 +1,3 @@
+<!--clubInfo.wxml-->
+  <activity-info></activity-info>
+  <member-info></member-info>

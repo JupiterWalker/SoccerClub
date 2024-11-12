@@ -1,0 +1,7 @@
+<!--clubInfo.wxml-->
+  <activity-info></activity-info>
+  <member-info></member-info>
+  <view class="button-example">
+  <t-button theme="light" block size="large" t-class="group-btn">请假</t-button>
+  <t-button theme="primary" block size="large" t-class="group-btn">报名</t-button>
+</view>

@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <button bindtap="navigateToClubInfo" style="position: relative; left: 0rpx; top: 68rpx">俱乐部信息</button>
+    <button bindtap="navigateToMemberInfo" style="position: relative; left: 0rpx; top: 8rpx">会员信息</button>
+    <button bindtap="navigateToJoinUs" style="position: relative; left: 0rpx; top: -52rpx">加入我们</button>
+    <button bindtap="navigateToMatch" style="position: relative; left: 0rpx; top: -112rpx">约赛</button>
+    <!-- <button bindtap="onShareAppMessage" open-type="share" style="position: relative; left: 0rpx; top: -486rpx">创建活动</button> -->
+    <button bindtap="onCreateActivity" style="position: relative; left: 0rpx; top: -81rpx">创建活动</button>
+    <button bindtap="onCheckHistory" style="position: relative; left: 0rpx; top: -141rpx">历史记录</button>
+    <button bindtap="onCheckMyInfo" style="position: relative; left: 0rpx; top: -60rpx">我的信息</button>
+  </view>
+</scroll-view>

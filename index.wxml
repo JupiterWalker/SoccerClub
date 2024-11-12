@@ -1,0 +1,4 @@
+<!--clubInfo.wxml-->
+<view class="club-info">
+  <text>俱乐部信息页面</text>
+</view>

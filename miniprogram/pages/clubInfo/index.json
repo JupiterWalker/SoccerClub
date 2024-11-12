@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "team-picture": "/components/team_picture/index",
+    "t-textarea": "/components/textarea/textarea"
+  }
+}

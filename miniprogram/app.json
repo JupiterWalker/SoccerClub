@@ -1,0 +1,36 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/clubInfo/index",
+    "pages/memberInfo/index",
+    "pages/joinUs/index",
+    "pages/match/index",
+    "pages/signUp/index",
+    "pages/createActivity/index",
+    "pages/checkHistory/index",
+    "pages/myInfo/index",
+    "pages/historyActivity/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "lazyCodeLoading": "requiredComponents",
+  "requiredPrivateInfos": [ 
+    "chooseLocation"
+  ],
+  "permission": {
+    "scope.chooseLocation": {
+      "desc": "用于选择球场地址"
+    }
+  },
+
+  "useExtendedLib": {
+    "weui": true
+  }
+
+}

@@ -1,0 +1,9 @@
+/* clubInfo.wxss */
+.club-info {
+  padding: 20px;
+}
+
+.button-example {
+  margin: 32rpx;
+}
+

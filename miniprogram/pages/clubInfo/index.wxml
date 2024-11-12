@@ -1,0 +1,14 @@
+<view class="club-info">
+  <text>俱乐部信息</text>
+  <team-picture></team-picture>
+  <view class="comment">
+  <t-textarea
+  label="俱乐部介绍"
+  placeholder="请输入文字"
+  disableDefaultPadding="{{true}}"
+  autosize="{{true}}"
+  bind:line-change="onLineChange"/>
+  </view>
+  <!-- <comment></comment> -->
+
+</view>

@@ -1,0 +1,12 @@
+{
+  "component": true,
+  "usingComponents": {
+    "date-all": "./date-all",
+    "location": "./location",
+    "t-input": "/components/input/input",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "t-cell": "/components/cell/cell",
+    "t-icon": "/components/icon/icon",
+    "t-textarea": "/components/textarea/textarea"
+  }
+}

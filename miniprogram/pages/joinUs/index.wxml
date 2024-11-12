@@ -1,0 +1,4 @@
+<!--clubInfo.wxml-->
+<view class="club-info">
+  <text>加入我们</text>
+</view>

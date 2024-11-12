@@ -1,0 +1,6 @@
+<!--clubInfo.wxml-->
+<view class="club-info">
+  <text>会员信息</text>
+  <team-picture></team-picture>
+  <member-info></member-info>
+</view>

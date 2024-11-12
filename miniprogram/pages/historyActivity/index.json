@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "member-info": "/components/team_member/index",
+    "activity-info": "/components/activity/index",
+    "t-button": "/components/button/button"
+  }
+}

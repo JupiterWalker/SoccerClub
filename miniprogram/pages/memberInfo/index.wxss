@@ -1,0 +1,75 @@
+.cover-view {
+  position: absolute;
+  top: calc(50% - 150rpx);
+  left: calc(50% - 300rpx);
+  /* opacity: .7; */
+}
+
+.group-photo{
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  height: 500rpx
+}
+.group-photo image {
+  width: 600rpx; 
+  height: 400rpx; 
+  background-color: #eeeeee;
+}
+
+.member-info-item image {
+  width: 120rpx; 
+  height: 120rpx; 
+  background-color: #eeeeee;
+}
+
+
+
+.club-info{
+  flex-direction:column
+}
+
+.member-info-row{
+  background: rgba(169, 228, 8, 0.7);
+  width: 600rpx;
+  font-size: 26rpx;
+  display:flex; 
+  flex-direction:row;
+  margin-left:  75rpx;
+  margin-right: 75rpx;
+}
+
+.member-info-item{
+  display: flex;
+  flex-direction:column;
+  width: 120rpx;
+  height: 150rpx;
+  font-size: 26rpx;
+  margin: 2rpx;
+  align-items: center;
+  align-content: center;
+}
+
+.green {
+  background: rgba(26, 173, 25, 0.7);
+}
+
+.blue {
+  background: rgba(39, 130, 215, 0.7);
+}
+
+.red {
+  background: rgba(212, 19, 19, 0.7);
+}
+
+.yellow {
+  background: rgba(241, 218, 10, 0.7);
+}
+
+.dark {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.orange {
+  background: rgba(236, 164, 9, 0.7);
+}

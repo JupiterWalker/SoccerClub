@@ -1,0 +1,4 @@
+/* clubInfo.wxss */
+.club-info {
+  padding: 20px;
+}

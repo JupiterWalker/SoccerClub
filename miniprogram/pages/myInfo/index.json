@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "history": "/components/time-line/index"
+  }
+}

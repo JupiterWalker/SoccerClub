@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "member-info": "/components/team_member/index",
+    "team-picture": "/components/team_picture/index"
+  }
+}

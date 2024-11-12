@@ -1,0 +1,22 @@
+<view class="time"><t-cell
+  title="选择日期时间"
+  hover
+  note="{{datetimeText}}"
+  arrow
+  left-icon="time"
+  data-mode="datetime"
+  bindtap="showPicker"
+  t-class="pannel-item"
+/></view>
+
+<!-- 年月日时分 -->
+<t-date-time-picker
+  title="选择日期和时间"
+  visible="{{datetimeVisible}}"
+  mode="hour"
+  value="{{datetime}}"
+  format="YYYY-MM-DD HH:mm:ss"
+  bindchange="onConfirm"
+  bindpick="onColumnChange"
+  bindcancel="hidePicker"
+/>
