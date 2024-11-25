@@ -1,18 +1,25 @@
 <!--clubInfo.wxml-->
 <view class="activity-info">
-  <date-all></date-all>
-  <location></location>
-
+  <date-all wx:if="{{!isReadonly}}" ></date-all>
+  <view wx:if="{{isReadonly}}" class="time"><t-cell
+  title="活动时间"
+  hover
+  note="{{recievedDatetimeText}}"
+  left-icon="time"
+  data-mode="datetime"
+  t-class="pannel-item"
+/></view>
+  <location isReadonly="{{isReadonly}}" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></location>
   <view class="head-count">
-  <t-input t-class-label="label" prefix-icon="user-add"  label="人数" placeholder="填写人数" suffix="人" align="right" type="number" />
+  <t-input disabled="{{isReadonly}}" t-class-label="label" prefix-icon="user-add"  label="人数" placeholder="填写人数" suffix="人" align="right" type="number" value="{{headCount}}"/>
 </view>
   <view class="comment">
-  <t-textarea
+  <t-textarea disabled="{{isReadonly}}"
   label="活动备注"
   placeholder="请输入文字"
   disableDefaultPadding="{{true}}"
   autosize="{{autosize}}"
-  bind:line-change="onLineChange"/></view>
+  bind:line-change="onLineChange" value="{{commentContent}}"/></view>
   <!-- <comment></comment> -->
 
 

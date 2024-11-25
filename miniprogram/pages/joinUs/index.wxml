@@ -1,4 +1,16 @@
 <!--clubInfo.wxml-->
 <view class="club-info">
-  <text>加入我们</text>
+  <!-- <text>加入我们</text> -->
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button>
+  <view class="nickname-wrapper">
+    <text class="nickname-label">昵称</text>
+    <input type="nickname" class="nickname-input" placeholder="请输入昵称"bind:change="onInputChange" 
+    value="{{nickname}}"/>
+  </view>
+  <view class="button-example">
+  <t-button bindtap="onApply" theme="primary" size="large" block>申请加入</t-button>
+  </view>
+  
 </view>

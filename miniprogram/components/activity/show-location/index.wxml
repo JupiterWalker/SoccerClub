@@ -1,0 +1,3 @@
+<view class="location"  bindtap="onOpenLocation">
+  <t-cell title="活动位置" hover arrow leftIcon="location"  note="{{locationText}}"/>
+</view>

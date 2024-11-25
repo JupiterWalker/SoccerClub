@@ -1,11 +1,11 @@
 <!--clubInfo.wxml-->
 <view class="club-info">
   <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <image class="avatar" src="{{avatar}}"></image>
   </button>
   <view class="nickname-wrapper">
     <text class="nickname-label">昵称</text>
-    <input type="nickname" class="nickname-input" placeholder="请输入昵称"bind:change="onInputChange" />
+    <input type="nickname" class="nickname-input" placeholder="请输入昵称"bind:change="onInputChange" value="{{nickname}}" />
   </view>
 
   <view class="member-ship-detail">

@@ -1,7 +1,27 @@
 <!--clubInfo.wxml-->
-  <activity-info></activity-info>
+  <activity-info headCount="25" isReadonly="true" commentContent="this is acommentContent"
+  recievedDatetimeText="2024-11-11 11:00:00" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></activity-info>
   <member-info></member-info>
   <view class="button-example">
-  <t-button theme="light" block size="large" t-class="group-btn">请假</t-button>
-  <t-button theme="primary" block size="large" t-class="group-btn">报名</t-button>
+  <!-- <t-button theme="light" block size="large" t-class="group-btn">请假</t-button> -->
+  <t-button theme="primary" block size="large" t-class="group-btn" bindtap="onJoin" 
+  disabled="{{isJoinButtonContentDisable}}" wx:if="{{showJoinButton}}" >{{joinButtonContent}}</t-button>
+  <t-button theme="primary" block size="large" t-class="group-btn" bindtap="onAbsent" 
+  disabled="{{isAbsentButtonContentDisable}}" wx:if="{{showAbsentButton}}" >{{absentButtonContent}}</t-button>
+  <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
+  <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">  
+  <!--drawer content-->  
+  <text class="center-text" >填写身份信息</text>
+  <view class="drawer_content">  
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{avatarUrl}}"></image>
+  </button>
+  <view class="nickname-wrapper">
+    <text class="nickname-label">昵称</text>
+    <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{nickName}}" />
+  </view>
+  <t-button class="signup-button" theme="primary" block size="large" data-statu="close" 
+  bindtap="onSaveInfoAndJoin" >报名</t-button>
+  </view>  
+</view>  
 </view>

@@ -2,7 +2,7 @@ var app = getApp()
 
 Page({
   data: {
-    text: "This is page data."
+    text: "This is page data.",
   },
   onLoad: function() {
     // 页面创建时执行
@@ -28,9 +28,11 @@ Page({
   onShareAppMessage: function (res) {
     console.log("createActivity onShareAppMessage is called")
     // 页面被用户分享时执行
+    // create activity
+    var activityId = 11
     return {
       "title": "Sign up",
-      "path": "/pages/signUp/index",
+      "path": "/pages/signUp/index?id="+activityId,
       "imageUrl": ""
     }
   },

@@ -1,6 +1,6 @@
 <!--clubInfo.wxml-->
-<activity-info></activity-info>
+<activity-info commentContent="{{commentContent}}"></activity-info>
 <view class="button-example">
-    <t-button bindTap="onShareAppMessage" data-name="ShareBtn" open-type="share" theme="primary" size="large" block>一键发布</t-button>
+    <t-button bindtap="onShareAppMessage" data-name="ShareBtn" open-type="share" theme="primary" size="large" block>一键发布</t-button>
 </view>
 <!-- <publish-button></publish-button> -->

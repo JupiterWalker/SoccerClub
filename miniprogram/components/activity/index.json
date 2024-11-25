@@ -3,6 +3,7 @@
   "usingComponents": {
     "date-all": "./date-all",
     "location": "./location",
+    "show-location": "./show-location",
     "t-input": "/components/input/input",
     "mp-icon": "weui-miniprogram/icon/icon",
     "t-cell": "/components/cell/cell",
