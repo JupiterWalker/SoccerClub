@@ -1,49 +1,13 @@
 <!--clubInfo.wxml-->
-<view class="member-info">
-  <view class="member-info-row">
-    <view class="member-info-item green">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
+<!-- <view class="member-info-wrapper">
+<div id="container">
+    <!-- <div class="item" wx:for="123456789">{{item}}</div> -->
+    <!-- <view class="item dark" wx:for="{{memberInfo}}">
+      <image mode="scaleToFill" src="{{item.avatarUrl}}"></image>
+      <text>{{item.nickName}}</text>
     </view>
-    <view class="member-info-item blue">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item red">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item yellow">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item dark">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <!-- <view class="member-info-item orange">xx</view> -->
-  </view>
-  <view class="member-info-row">
-    <view class="member-info-item green">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item blue">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item red">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item yellow">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <view class="member-info-item dark">
-      <image mode="scaleToFill" src="https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg"></image>
-      <text>xxx</text>
-    </view>
-    <!-- <view class="member-info-item orange">xx</view> -->
-  </view>
-</view>
+  </div>
+</view> -->
+<t-grid class="block" column="{{5}}" theme="card">
+  <t-grid-item class="grid-item" wx:for="{{memberInfo}}" text="{{item.nickName}}" image=""><image class="avatar-image" mode="scaleToFill" src="{{item.avatarUrl}}"></image></t-grid-item>
+</t-grid>

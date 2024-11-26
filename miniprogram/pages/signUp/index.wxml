@@ -1,7 +1,7 @@
 <!--clubInfo.wxml-->
   <activity-info headCount="25" isReadonly="true" commentContent="this is acommentContent"
   recievedDatetimeText="2024-11-11 11:00:00" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></activity-info>
-  <member-info></member-info>
+  <member-info memberInfo="{{memberInfo}}" ></member-info>
   <view class="button-example">
   <!-- <t-button theme="light" block size="large" t-class="group-btn">请假</t-button> -->
   <t-button theme="primary" block size="large" t-class="group-btn" bindtap="onJoin" 

@@ -1,6 +1,7 @@
 Component({
   data: {
-    locationTitle: "选择位置"
+    locationTitle: "选择位置",
+    locationText: ""
   },
   properties: {
     // 这里定义了组件的属性
@@ -38,7 +39,17 @@ Component({
         // 打开地图选择位置，获取 纬度 、精度
         wx.chooseLocation({
           success: res => {
-          console.log(res);
+          console.log('chooseLocation: ', res);
+          var myEventDetail = {
+            "location": res.name, 
+            "latitude": res.latitude, 
+            "longitude": res.longitude
+          } // detail对象，提供给事件监听函数
+          var myEventOption = {} // 触发事件的选项
+          this.setData({
+            locationText: res.name
+          });
+          this.triggerEvent('LocationEvent', myEventDetail, myEventOption)
         }
         })
       }

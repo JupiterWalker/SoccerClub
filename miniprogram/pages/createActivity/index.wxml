@@ -1,5 +1,10 @@
 <!--clubInfo.wxml-->
-<activity-info commentContent="{{commentContent}}"></activity-info>
+<activity-info 
+bind:DatetimeEvent="onDatetimeEvent" 
+bind:LocationEvent="onLocationEvent"
+bind:HeadcountEvent="onHeadcountEvent"
+bind:CommentEvent="onCommentEvent"
+commentContent="{{commentContent}}"></activity-info>
 <view class="button-example">
     <t-button bindtap="onShareAppMessage" data-name="ShareBtn" open-type="share" theme="primary" size="large" block>一键发布</t-button>
 </view>

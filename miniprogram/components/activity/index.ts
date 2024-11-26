@@ -40,11 +40,33 @@ Component({
   },
   methods: {
     // 组件的方法
-    
+    forwardDatetimeEvent(e) {
+      console.log('triggered forwardDatetimeEvent: ', e);
+      var myEventDetail = e.detail // detail对象，提供给事件监听函数
+      var myEventOption = {} // 触发事件的选项
+      this.triggerEvent('DatetimeEvent', myEventDetail, myEventOption)
+    },
+    forwardLocationEvent(e) {
+      console.log('triggered forwardLocationEvent: ', e);
+      var myEventDetail = e.detail // detail对象，提供给事件监听函数
+      var myEventOption = {} // 触发事件的选项
+      this.triggerEvent('LocationEvent', myEventDetail, myEventOption)
+    },
+    forwardHeadcountEvent(e) {
+      console.log('triggered forwardHeadcountEvent: ', e);
+      var myEventDetail = e.detail // detail对象，提供给事件监听函数
+      var myEventOption = {} // 触发事件的选项
+      this.triggerEvent('HeadcountEvent', myEventDetail, myEventOption)
+    },
+    forwardCommentEvent(e) {
+      console.log('triggered forwardCommentEvent: ', e);
+      var myEventDetail = e.detail // detail对象，提供给事件监听函数
+      var myEventOption = {} // 触发事件的选项
+      this.triggerEvent('CommentEvent', myEventDetail, myEventOption)
+    },
 },
 lifetimes: {
   attached() {
-    console.log("activiti-com attached")
   }
 }
 }

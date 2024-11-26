@@ -1,32 +1,64 @@
 var app = getApp()
 
-Page({
+Component({
   data: {
     text: "This is page data.",
+    datetime: null,
+    latitude: null,
+    longitude: null,
+    headcount: 0,
+    comment: ""
   },
-  onLoad: function() {
+  methods: {
+  onDatetimeEvent(e) {
+      console.log('onDatetimeEvent recieved: ', e);
+      this.setData({
+        "datetime": e.detail.datetime
+      })
+  },
+  onLocationEvent(e) {
+    console.log('onLocationEvent recieved: ', e);
+    this.setData({
+      "datetime": e.detail.location,
+      "latitude": e.detail.latitude,
+      "longitude": e.detail.longitude,
+    })
+  },
+  onHeadcountEvent(e) {
+    console.log('onHeadcountEvent recieved: ', e);
+    this.setData({
+      "headcount": Number(e.detail.value),
+    })
+  },
+  onCommentEvent(e) {
+    console.log('onCommentEvent recieved: ', e);
+    this.setData({
+      "comment": e.detail.value,
+    })
+  },
+  onLoad() {
     // 页面创建时执行
   },
-  onShow: function() {
+  onShow() {
     // 页面出现在前台时执行
   },
-  onReady: function() {
+  onReady() {
     // 页面首次渲染完毕时执行
   },
-  onHide: function() {
+  onHide() {
     // 页面从前台变为后台时执行
   },
-  onUnload: function() {
+  onUnload() {
     // 页面销毁时执行
   },
-  onPullDownRefresh: function() {
+  onPullDownRefresh() {
     // 触发下拉刷新时执行
   },
-  onReachBottom: function() {
+  onReachBottom() {
     // 页面触底时执行
   },
-  onShareAppMessage: function (res) {
-    console.log("createActivity onShareAppMessage is called")
+  onShareAppMessage(res) {
+    console.log("createActivity onShareAppMessage is called: ", this.data)
     // 页面被用户分享时执行
     // create activity
     var activityId = 11
@@ -36,10 +68,10 @@ Page({
       "imageUrl": ""
     }
   },
-  onPageScroll: function() {
+  onPageScroll() {
     // 页面滚动时执行
   },
-  onResize: function() {
+  onResize() {
     // 页面尺寸变化时执行
   },
   onTabItemTap(item) {
@@ -49,15 +81,10 @@ Page({
     console.log(item.text)
   },
   // 事件响应函数
-  viewTap: function() {
-    this.setData({
-      text: 'Set some data for updating view.'
-    }, function() {
-      // this is setData callback
-    })
-  },
-  // 自由数据
-  customData: {
-    hi: 'MINA'
+  viewTap() {
+      this.setData({
+        text: 'Set some data for updating view.'
+      })
+    },
   }
 })
