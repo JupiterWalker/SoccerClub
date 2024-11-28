@@ -10,7 +10,7 @@ page {
 /* 容器二 */
 .box-line {
   border-left: 3rpx solid #c8c9cc;
-  padding: 15rpx 10rpx 15rpx 35rpx;
+  padding: 0rpx 10rpx 0rpx 35rpx;
 }
 
 /* 圆点 */
@@ -44,6 +44,7 @@ page {
 
 /* 容器三 */
 .box-data {
+  width: 550rpx;
   background-color: white;
   padding: 30rpx 15rpx;
   border-radius: 15rpx;
@@ -84,4 +85,12 @@ page {
 
 .row-button view:nth-child(3) {
   background-color: #2979ff;
+}
+
+.demo-wrapper {
+  display: flex;
+  margin-left: 0rpx;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  align-items: center;
 }

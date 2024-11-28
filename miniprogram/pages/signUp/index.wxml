@@ -1,6 +1,6 @@
 <!--clubInfo.wxml-->
-  <activity-info headCount="25" isReadonly="true" commentContent="this is acommentContent"
-  recievedDatetimeText="2024-11-11 11:00:00" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></activity-info>
+  <activity-info headCount="{{headCount}}" isReadonly="true" commentContent="this is acommentContent"
+  recievedDatetimeText="{{datetime}}" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></activity-info>
   <member-info memberInfo="{{memberInfo}}" ></member-info>
   <view class="button-example">
   <!-- <t-button theme="light" block size="large" t-class="group-btn">请假</t-button> -->

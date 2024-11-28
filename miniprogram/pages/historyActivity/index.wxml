@@ -1,3 +1,4 @@
 <!--clubInfo.wxml-->
-  <activity-info></activity-info>
-  <member-info></member-info>
+<activity-info headCount="{{headCount}}" isReadonly="true" commentContent="this is acommentContent"
+  recievedDatetimeText="{{datetime}}" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></activity-info>
+  <member-info memberInfo="{{memberInfo}}" ></member-info> 

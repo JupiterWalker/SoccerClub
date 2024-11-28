@@ -1,4 +1,5 @@
 {
   "usingComponents": {
+    "t-badge": "/components/badge/badge"
   }
 }
