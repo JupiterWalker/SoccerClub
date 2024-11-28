@@ -2,12 +2,15 @@ var app = getApp()
 
 Component({
   data: {
-    text: "This is page data.",
     datetime: null,
+    location: null, 
+    type: "match",
     latitude: null,
     longitude: null,
     headcount: 0,
-    comment: ""
+    comment: "",
+    activity_id: null,
+    openid: null
   },
   methods: {
   onDatetimeEvent(e) {
@@ -61,10 +64,33 @@ Component({
     console.log("createActivity onShareAppMessage is called: ", this.data)
     // 页面被用户分享时执行
     // create activity
-    var activityId = 11
+    app.cloud.callContainer({
+      config: {
+        env: 'prod-9g2ku83w83a5f799', // 微信云托管的环境ID
+      },
+      path: 'activity/', // 填入业务自定义路径和参数，根目录，就是 /
+      method: 'POST', // 按照自己的业务开发，选择对应的方法
+      header: {
+        'X-WX-SERVICE': 'django-8l8l', // xxx中填入服务名称（微信云托管 - 服务管理 - 服务列表 - 服务名称）
+      },
+      data: {
+        "openid": this.data.openid, 
+        "location": this.data.location,
+        "latitude": this.data.latitude,
+        "longitude": this.data.longitude,
+        "datetime": this.data.datetime,
+        "type": this.data.type,
+        "comment": this.data.comment,
+        "headcount": this.data.headcount,
+      },
+    }).then(res => {
+      this.setData({
+        activity_id: res.data.id
+      })
+    })
     return {
       "title": "Sign up",
-      "path": "/pages/signUp/index?id="+activityId,
+      "path": "/pages/signUp/index?id="+this.data.activity_id,
       "imageUrl": ""
     }
   },

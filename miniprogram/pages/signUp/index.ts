@@ -2,55 +2,72 @@ var app = getApp()
 
 Component({
   data: {
-    text: "This is page data.",
-    openid: null,
-    avatarUrl: null,
-    nickName: null,
+    activity: {
+      id: null,
+      datetime: "null",
+      location: "null",
+      headcount: 0,
+      comment: "no comment",
+      longitude: 121.379577,
+      latitude: 31.114569,
+      status: null,
+      type: null
+    },
+    user: {
+      openid: null,
+      avatarUrl: null,
+      nickName: null,
+    },
+    activity_member_id: null,
     showModalStatus: false,
-    datetime: "null",
-    location: "null",
-    headCount: 0,
-    comment: "no comment",
     isJoinButtonContentDisable: false,
     isAbsentButtonContentDisable: false,
     showJoinButton: true,
     showAbsentButton: false,
     absentButtonContent: "鸽",
     joinButtonContent: "报名",
-    longitude: 121.379577,
-    latitude: 31.114569,
-    locationText: "chusheng",
+    
     memberInfo: [
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jimmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"},
-      {"avatarUrl": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickName": "Jim"}]
+      // {"avatar": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickname": "Jim"}
+      // {"avatar": "https://res.wx.qq.com/wxdoc/dist/assets/img/0.4cb08bb4.jpg", "nickname": "Jimmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"}
+    ]
   },
   methods: {
   onLoad(options) {
     // 
     console.log('signUp onLoad options: ', options)
     if (options.id) {
+      this.setData({
+        "activity.id": options.id
+      });
       // load activity info by id
       console.log("load activity info by id");
-      this.setData({
-        datetime: "2024-11-25 12:25:38.053749",
-        location: "chusheng",
-        headCount: 25,
-        comment: "no comment"
-      })
-    }else{};
-    // 页面创建时执行
-    console.log("signUp onload");
-    // check if current activity is joined
-    // - if joined, then show "ask leave"
-    // - else show "join"
-    this.setData({
-    })
+      app.cloud.callContainer({
+        config: {
+          env: 'prod-9g2ku83w83a5f799', // 微信云托管的环境ID
+        },
+        path: 'activity/'+options.id, // 填入业务自定义路径和参数，根目录，就是 /
+        method: 'GET', // 按照自己的业务开发，选择对应的方法
+        header: {
+          'X-WX-SERVICE': 'django-8l8l', // xxx中填入服务名称（微信云托管 - 服务管理 - 服务列表 - 服务名称）
+        },
+      }).then(res => {
+        this.setData({
+          "activity.datetime": res.data["member_info"]["datetime"],
+          "activity.location": res.data["member_info"]["location"],
+          "activity.latitude": res.data["member_info"]["latitude"],
+          "activity.longitude": res.data["member_info"]["longitude"],
+          "activity.headCount": res.data["member_info"]["headCount"],
+          "activity.comment": res.data["member_info"]["comment"],
+          "activity.status": res.data["member_info"]["status"],
+          "activity.type": res.data["member_info"]["type"],
+          memberInfo: res.data["member_infos"],
+          openid: app.globalData.userInfo.openid,
+        })
+      });
+    }else{
+      console.log("signUp onload got no activity id");
+    };
   },
   onShow() {
     // 页面出现在前台时执行
@@ -154,6 +171,32 @@ Component({
     }else{
       // - else join game
       console.log("should join the game here")
+      app.cloud.callContainer({
+        config: {
+          env: 'prod-9g2ku83w83a5f799', // 微信云托管的环境ID
+        },
+        path: 'member_activity/', // 填入业务自定义路径和参数，根目录，就是 /
+        method: 'POST', // 按照自己的业务开发，选择对应的方法
+        header: {
+          'X-WX-SERVICE': 'django-8l8l', // xxx中填入服务名称（微信云托管 - 服务管理 - 服务列表 - 服务名称）
+        },
+        data: {
+          "openid": this.data.user.openid, 
+          "activity_id": this.data.user.openid
+        },
+      }).then(res => {
+        console.log('update app.globalData.userInfo', res);
+        this.setData({
+          memberInfo: res.data["member_infos"],
+          "activity.datetime": res.data["activity"]["datetime"],
+          "activity.location": res.data["activity"]["location"],
+          "activity.headcount": res.data["activity"]["headcount"],
+          "activity.comment": res.data["activity"]["comment"],
+          "activity.longitude": res.data["activity"]["longitude"],
+          "activity.latitude": res.data["activity"]["latitude"],
+          "activity_member_id": res.data["activity_member_id"]
+        })
+      })
       // join button change text to "already", and enable the "ask leave" button
       this.setData({
         joinButtonContent: "已报名",
@@ -165,6 +208,33 @@ Component({
  onAbsent() {
     //
     console.log("should absent absent game here");
+    app.cloud.callContainer({
+      config: {
+        env: 'prod-9g2ku83w83a5f799', // 微信云托管的环境ID
+      },
+      path: 'member_activity/', // 填入业务自定义路径和参数，根目录，就是 /
+      method: 'PUT', // 按照自己的业务开发，选择对应的方法
+      header: {
+        'X-WX-SERVICE': 'django-8l8l', // xxx中填入服务名称（微信云托管 - 服务管理 - 服务列表 - 服务名称）
+      },
+      data: {
+        "openid": this.data.user.openid, 
+        "activity_id": this.data.user.openid,
+        "activity_member_id": this.data.activity_member_id,
+        "type": "take_leave"
+      },
+    }).then(res => {
+      console.log('update app.globalData.userInfo', res);
+      this.setData({
+        memberInfo: res.data["member_infos"],
+        "activity.datetime": res.data["activity"]["datetime"],
+        "activity.location": res.data["activity"]["location"],
+        "activity.headcount": res.data["activity"]["headcount"],
+        "activity.comment": res.data["activity"]["comment"],
+        "activity.longitude": res.data["activity"]["longitude"],
+        "activity.latitude": res.data["activity"]["latitude"],
+      })
+    })
     this.setData({
       showJoinButton: false,
       isAbsentButtonContentDisable: true,
@@ -173,13 +243,26 @@ Component({
 },
   onSaveInfoAndJoin() {
     // create new user
-    console.log("create new user", this.data.avatarUrl, this.data.nickName);
-    console.log("should join game here");
-      // join button change text to "already", and enable the "ask leave" button
+    console.log("create new user", this.data.user.avatarUrl, this.data.user.nickName);
+    if (this.data.user.nickName === null || this.data.user.avatarUrl === null) {
+      wx.showModal({
+        title: '必填',
+        content: '报个名，露个脸!蟹蟹~',
+        success (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+    }
+    const userInfo = app.setUserInfo(this.data.user.nickName, this.data.user.avatarUrl)
+    //update global userinfo here
+    app.globalData.userInfo = userInfo
+    // join button change text to "already", and enable the "ask leave" button
+    this.onJoin()
     this.setData({
-      joinButtonContent: "已报名",
-      isJoinButtonContentDisable: true,
-      showAbsentButton: true,
       showModalStatus: false
     })
   },
@@ -187,14 +270,15 @@ Component({
     const nickName = e.detail.value
     console.log('onInputChange', nickName)
     this.setData({
-      "nickName": nickName,
+      "user.nickName": nickName,
     });
   },
   onChooseAvatar(e: any) {
     console.log('onChooseAvatar', e)
     const { avatarUrl } = e.detail
+    const uploadRes = app.uploadAvatarAndGetPath(avatarUrl, this.data.openid);
     this.setData({
-      "avatarUrl": avatarUrl
+      "user.avatarUrl": uploadRes.fileID
     });
   }
 }

@@ -1,6 +1,6 @@
 <!--clubInfo.wxml-->
-  <activity-info headCount="{{headCount}}" isReadonly="true" commentContent="this is acommentContent"
-  recievedDatetimeText="{{datetime}}" locationText="{{locationText}}" longitude="{{longitude}}" latitude="{{latitude}}"></activity-info>
+  <activity-info headCount="{{activity.headcount}}" isReadonly="true" commentContent="this is acommentContent"
+  recievedDatetimeText="{{activity.datetime}}" locationText="{{activity.location}}" longitude="{{activity.longitude}}" latitude="{{activity.latitude}}"></activity-info>
   <member-info memberInfo="{{memberInfo}}" ></member-info>
   <view class="button-example">
   <!-- <t-button theme="light" block size="large" t-class="group-btn">请假</t-button> -->
@@ -14,11 +14,11 @@
   <text class="center-text" >填写身份信息</text>
   <view class="drawer_content">  
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{avatarUrl}}"></image>
+    <image class="avatar" src="{{user.avatar}}"></image>
   </button>
   <view class="nickname-wrapper">
     <text class="nickname-label">昵称</text>
-    <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{nickName}}" />
+    <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{user.nickname}}" />
   </view>
   <t-button class="signup-button" theme="primary" block size="large" data-statu="close" 
   bindtap="onSaveInfoAndJoin" >报名</t-button>
