@@ -4,8 +4,8 @@ Component({
   data: {
     activity: {
       id: null,
-      datetime: "null",
-      location: "null",
+      datetime: null,
+      location: null,
       headcount: 0,
       comment: "no comment",
       longitude: 121.379577,
@@ -18,6 +18,8 @@ Component({
       avatarUrl: null,
       nickName: null,
     },
+    isCancelled: false,
+    isCompleted: false,
     activity_member_id: null,
     showModalStatus: false,
     isJoinButtonContentDisable: false,
@@ -33,6 +35,23 @@ Component({
     ]
   },
   methods: {
+  setLeaved(){
+    this.setData({
+      "isJoinButtonContentDisable": false,
+      "isAbsentButtonContentDisable": true,
+      "showJoinButton": false,
+      "showAbsentButton": true,
+    })
+  },
+  setJoined(){
+    this.setData({
+      "isJoinButtonContentDisable": true,
+      "isAbsentButtonContentDisable": false,
+      "showJoinButton": true,
+      "showAbsentButton": true,
+    })
+  },
+
   onLoad(options) {
     // 
     console.log('signUp onLoad options: ', options)
@@ -52,18 +71,44 @@ Component({
           'X-WX-SERVICE': 'django-8l8l', // xxx中填入服务名称（微信云托管 - 服务管理 - 服务列表 - 服务名称）
         },
       }).then(res => {
+        console.log("call activity res: ", res)
+        let data = res.data["activity_history_list"]["activity_info"];
+        let memberInfo = res.data["activity_history_list"]["member_infos"].map(item => {
+          let transformedItem = {};
+          transformedItem['avatarUrl'] = item['avatar'];
+          transformedItem['nickName'] = item['nickname'];
+          transformedItem['type'] = item['type'];
+          if (item['openid'] == app.globalData.userInfo.openid){
+            if (item['type'] == "present"){
+              this.setJoined()
+            }else if(item['type'] == "take_leave"){
+              this.setLeaved()
+            }
+          }
+          return transformedItem;
+        });
         this.setData({
-          "activity.datetime": res.data["member_info"]["datetime"],
-          "activity.location": res.data["member_info"]["location"],
-          "activity.latitude": res.data["member_info"]["latitude"],
-          "activity.longitude": res.data["member_info"]["longitude"],
-          "activity.headCount": res.data["member_info"]["headCount"],
-          "activity.comment": res.data["member_info"]["comment"],
-          "activity.status": res.data["member_info"]["status"],
-          "activity.type": res.data["member_info"]["type"],
-          memberInfo: res.data["member_infos"],
-          openid: app.globalData.userInfo.openid,
-        })
+          "activity.datetime": data["datetime"],
+          "activity.location": data["location"],
+          "activity.latitude": data["latitude"],
+          "activity.longitude": data["longitude"],
+          "activity.headcount": data["headcount"],
+          "activity.comment": data["comment"],
+          "activity.status": data["status"],
+          "activity.type": data["type"],
+          memberInfo: memberInfo,
+          "user.openid": app.globalData.userInfo.openid,
+          "isCancelled": data["status"] == "completed",
+          "isCompleted": data["status"] == "cancelled",
+        });
+        if((data["status"] == "completed") || (data["status"] == "cancelled")) {
+          this.setData({
+            "isCancelled": data["status"] == "cancelled",
+            "isCompleted": data["status"] == "completed",
+            "showJoinButton": false,
+            "showAbsentButton": false,
+          })
+        }
       });
     }else{
       console.log("signUp onload got no activity id");
@@ -164,13 +209,14 @@ Component({
   },
   onJoin() {
     // check if user exist
+    console.log("onJoin app.globalData: ", app.globalData);
     console.log("onJoin: ", app.globalData.userInfo.create_time);
     if (app.globalData.userInfo.create_time===null) {
       // - if not popup user info collect Page, then when click button to join game
       this.util("open")
     }else{
       // - else join game
-      console.log("should join the game here")
+      console.log("should join the game here, this.data: ", this.data)
       app.cloud.callContainer({
         config: {
           env: 'prod-9g2ku83w83a5f799', // 微信云托管的环境ID
@@ -182,12 +228,18 @@ Component({
         },
         data: {
           "openid": this.data.user.openid, 
-          "activity_id": this.data.user.openid
+          "activity_id": this.data.activity.id
         },
       }).then(res => {
         console.log('update app.globalData.userInfo', res);
+        let memberInfo = res.data["member_infos"].map(item => {
+          let transformedItem = {};
+          transformedItem['avatarUrl'] = item['avatar'];
+          transformedItem['nickName'] = item['nickname'];
+          return transformedItem;
+        });
         this.setData({
-          memberInfo: res.data["member_infos"],
+          memberInfo: memberInfo,
           "activity.datetime": res.data["activity"]["datetime"],
           "activity.location": res.data["activity"]["location"],
           "activity.headcount": res.data["activity"]["headcount"],
@@ -219,14 +271,21 @@ Component({
       },
       data: {
         "openid": this.data.user.openid, 
-        "activity_id": this.data.user.openid,
+        "activity_id": this.data.activity.id,
         "activity_member_id": this.data.activity_member_id,
         "type": "take_leave"
       },
     }).then(res => {
       console.log('update app.globalData.userInfo', res);
+      let memberInfo = res.data["member_infos"].map(item => {
+        let transformedItem = {};
+        transformedItem['avatarUrl'] = item['avatar'];
+        transformedItem['nickName'] = item['nickname'];
+        transformedItem['type'] = item['type'];
+        return transformedItem;
+      });
       this.setData({
-        memberInfo: res.data["member_infos"],
+        "memberInfo": memberInfo,
         "activity.datetime": res.data["activity"]["datetime"],
         "activity.location": res.data["activity"]["location"],
         "activity.headcount": res.data["activity"]["headcount"],
@@ -254,17 +313,20 @@ Component({
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
+          return
         }
       })
     }
-    const userInfo = app.setUserInfo(this.data.user.nickName, this.data.user.avatarUrl)
-    //update global userinfo here
-    app.globalData.userInfo = userInfo
-    // join button change text to "already", and enable the "ask leave" button
-    this.onJoin()
-    this.setData({
-      showModalStatus: false
-    })
+    app.setUserInfo(this.data.user.nickName, this.data.user.avatarUrl
+      ).then(userInfo => {
+        //update global userinfo here
+        app.globalData.userInfo = userInfo
+        // join button change text to "already", and enable the "ask leave" button
+        this.onJoin()
+        this.setData({
+          showModalStatus: false
+        })
+      })
   },
   onInputChange(e: any) {
     const nickName = e.detail.value
@@ -274,12 +336,19 @@ Component({
     });
   },
   onChooseAvatar(e: any) {
-    console.log('onChooseAvatar', e)
-    const { avatarUrl } = e.detail
-    const uploadRes = app.uploadAvatarAndGetPath(avatarUrl, this.data.openid);
+    console.log('onChooseAvatar', e);
+    const avatarUrl = e.detail.avatarUrl
     this.setData({
-      "user.avatarUrl": uploadRes.fileID
+      "user.avatarUrl": avatarUrl
     });
+    console.log('avatarUrl', avatarUrl);
+    app.uploadAvatarAndGetPath(avatarUrl, this.data.user.openid
+      ).then(newAvatarUrl => {
+        this.setData({
+          "user.avatarUrl": newAvatarUrl
+        });
+      })
+    
   }
 }
 })

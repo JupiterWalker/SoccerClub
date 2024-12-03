@@ -7,3 +7,7 @@
   margin: 32rpx;
 }
 
+.share {
+  --td-button-default-color: white;
+  --td-button-default-bg-color: rgb(35, 219, 81);
+}

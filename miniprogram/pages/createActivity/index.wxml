@@ -6,6 +6,8 @@ bind:HeadcountEvent="onHeadcountEvent"
 bind:CommentEvent="onCommentEvent"
 commentContent="{{commentContent}}"></activity-info>
 <view class="button-example">
-    <t-button bindtap="onShareAppMessage" data-name="ShareBtn" open-type="share" theme="primary" size="large" block>一键发布</t-button>
+    <t-button wx:if="{{!is_created}}" bindtap="onCreateActivity" theme="primary" size="large" block>确认</t-button>
+
+    <t-button class="share" data-name="ShareBtn" wx:if="{{is_created}}" open-type="share" size="large" block>一键发布</t-button>
 </view>
 <!-- <publish-button></publish-button> -->

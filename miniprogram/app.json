@@ -24,12 +24,6 @@
     "chooseLocation"
   ],
   "permission": {
-    "scope.chooseLocation": {
-      "desc": "用于选择球场地址"
-    },
-    "scope.writePhotosAlbum": {
-      "desc": "需要您的授权才能上传图片到相册"
-    },
     "scope.userLocation": {
       "desc": "是否允许获取你当前的地理位置信息？"
     }

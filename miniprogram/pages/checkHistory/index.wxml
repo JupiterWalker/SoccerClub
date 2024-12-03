@@ -1,2 +1,2 @@
 <!--clubInfo.wxml-->
-　<history></history>
+　<history dataList="{{historyDataList}}"></history>

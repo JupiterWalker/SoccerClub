@@ -18,6 +18,7 @@ Component({
     hasUserInfo: false,
     canIUseGetUserProfile: wx.canIUse('getUserProfile'),
     canIUseNicknameComp: wx.canIUse('input.type.nickname'),
+    historyDataList: []
   },
   methods: {
     async getCurrentUserInfo() {
@@ -38,7 +39,53 @@ Component({
         "openid": app.globalData.userInfo.openid,
         "avatar": avatar,
         "nickname": app.globalData.userInfo.nickname,
-      })
+      });
+
+      // load user info
+      // load user history info
+      app.getActivityHistory(this.data.openid, null
+        ).then(res => {
+          console.log("my info res: ", res)
+          let historyDataList = []; // 用于存储处理后的数据
+
+          for (let item of res.activity_history) {
+            let status;
+            let color;
+            if (item.status === "published") {
+              status = '火热报名中';
+              color = "red";
+            } else if (item.status === "cancelled") {
+              status = '已取消';
+              color = "gray"; // 注意这里是 "gray" 而不是 "greay"
+            } else if (item.status === "completed") {
+              status = '已结束';
+              color = "green";
+            }
+
+            let rendered_type;
+            if (item.type === "match") {
+              rendered_type = '球赛⚽';
+            } else if (item.type === "tb") {
+              rendered_type = '聚餐🍻';
+            } else {
+              rendered_type = '其他';
+            }
+
+            // 将处理后的数据添加到historyDataList数组中
+            // 注意：原伪代码中的 'appen' 应为 'push'，且 'activity_id' 应为 'item.activity_id' 而不是 'item.datetime'
+            historyDataList.push({
+              'datetime': item.datetime,
+              'location': item.location,
+              'status': status,
+              'color': color,
+              'activity_id': item.activity_id, // 假设item中有一个activity_id字段
+              'type': rendered_type
+            });
+          }
+          this.setData({
+            "historyDataList": historyDataList
+          })
+        })
     },
     // 事件处理函数
     bindViewTap() {

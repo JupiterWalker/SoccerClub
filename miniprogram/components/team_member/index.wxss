@@ -15,3 +15,26 @@
   --td-grid-item-padding: 0rpx;
   --td-grid-item-text-line-height: 1rpx;
 }
+
+.seal-result{
+  width: 60px;
+  height: 60px;
+  transform: rotate(30deg);
+  border: solid 2px green;
+  border-radius: 100%;
+  text-align: center;
+  color: green;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 60px;
+  right: 5px;
+  bottom: 0px;
+  position: absolute;
+  background-color: rgba(255,255,255,0.8)
+}
+
+.seal-result-fail{
+  border-color: red;
+        color: red;
+}
+

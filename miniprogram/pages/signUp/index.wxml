@@ -1,5 +1,5 @@
 <!--clubInfo.wxml-->
-  <activity-info headCount="{{activity.headcount}}" isReadonly="true" commentContent="this is acommentContent"
+  <activity-info headCount="{{activity.headcount}}" isReadonly="true" commentContent="{{activity.comment}}"
   recievedDatetimeText="{{activity.datetime}}" locationText="{{activity.location}}" longitude="{{activity.longitude}}" latitude="{{activity.latitude}}"></activity-info>
   <member-info memberInfo="{{memberInfo}}" ></member-info>
   <view class="button-example">
@@ -8,17 +8,22 @@
   disabled="{{isJoinButtonContentDisable}}" wx:if="{{showJoinButton}}" >{{joinButtonContent}}</t-button>
   <t-button theme="primary" block size="large" t-class="group-btn" bindtap="onAbsent" 
   disabled="{{isAbsentButtonContentDisable}}" wx:if="{{showAbsentButton}}" >{{absentButtonContent}}</t-button>
+  <t-button class="signup-button completed" wx:if="{{isCompleted}}" theme="primary" block size="large" data-statu="close" 
+  bindtap="onSaveInfoAndJoin" disabled="true" >已结束</t-button>
+  <t-button class="signup-button cancelled" wx:if="{{isCancelled}}" theme="primary" block size="large" data-statu="close" 
+  bindtap="onSaveInfoAndJoin" disabled="true" >已取消</t-button>
+
   <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}"></view>  
   <view animation="{{animationData}}" class="drawer_attr_box" wx:if="{{showModalStatus}}">  
   <!--drawer content-->  
   <text class="center-text" >填写身份信息</text>
   <view class="drawer_content">  
     <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{user.avatar}}"></image>
+    <image class="avatar" src="{{user.avatarUrl}}"></image>
   </button>
   <view class="nickname-wrapper">
     <text class="nickname-label">昵称</text>
-    <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{user.nickname}}" />
+    <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" value="{{user.nickName}}" />
   </view>
   <t-button class="signup-button" theme="primary" block size="large" data-statu="close" 
   bindtap="onSaveInfoAndJoin" >报名</t-button>

@@ -9,5 +9,5 @@
   </div>
 </view> -->
 <t-grid class="block" column="{{5}}" theme="card">
-  <t-grid-item class="grid-item" wx:for="{{memberInfo}}" text="{{item.nickName}}" image=""><image class="avatar-image" mode="scaleToFill" src="{{item.avatarUrl}}"></image></t-grid-item>
+  <t-grid-item class="grid-item" wx:for="{{memberInfo}}" text="{{item.nickName}}" image=""><image class="avatar-image" mode="scaleToFill" src="{{item.avatarUrl}}"></image><div wx:if="{{item.type === 'take_leave'}}" class="seal-result seal-result-fail">已鸽</div></t-grid-item>
 </t-grid>

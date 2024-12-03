@@ -89,6 +89,15 @@
   margin-top: 20px; /* Adjust the value as needed */
 }
 
+.completed {
+  --td-button-default-color: rgb(252, 252, 252);
+  --td-button-default-bg-color: rgb(52, 107, 55);
+}
+
+.cancelled {
+  --td-button-default-color: rgb(49, 48, 48);
+  --td-button-default-bg-color: rgb(177, 177, 177);
+}
 .center-text {
   display: flex;
   justify-content: center;

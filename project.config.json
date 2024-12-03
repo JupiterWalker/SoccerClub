@@ -35,7 +35,7 @@
     "ignore": [],
     "include": []
   },
-  "appid": "touristappid",
+  "appid": "wx6380c8fd6bba1d82",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "cloudfunctionRoot": "cloudfunctions/"
 }

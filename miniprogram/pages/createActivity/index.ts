@@ -10,7 +10,8 @@ Component({
     headcount: 0,
     comment: "",
     activity_id: null,
-    openid: null
+    openid: null,
+    is_created: false
   },
   methods: {
   onDatetimeEvent(e) {
@@ -22,7 +23,7 @@ Component({
   onLocationEvent(e) {
     console.log('onLocationEvent recieved: ', e);
     this.setData({
-      "datetime": e.detail.location,
+      "location": e.detail.location,
       "latitude": e.detail.latitude,
       "longitude": e.detail.longitude,
     })
@@ -61,8 +62,57 @@ Component({
     // 页面触底时执行
   },
   onShareAppMessage(res) {
-    console.log("createActivity onShareAppMessage is called: ", this.data)
-    // 页面被用户分享时执行
+    console.log("onShareAppMessage")
+    return {
+      "title": "Sign up",
+      "path": "/pages/signUp/index?id="+this.data.activity_id,
+      "imageUrl": ""
+    }
+  },
+  onCreateActivity(res) {
+    console.log("createActivity onShareAppMessage is called: ", res)
+      
+    if (!this.data.datetime) {
+          wx.showModal({
+            title: '必填',
+            content: '请填写日期时间~',
+        success (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return
+  }else if (!this.data.location) {
+    wx.showModal({
+      title: '必填',
+      content: '请填写位置~',
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+    return
+  }else if (!this.data.headcount) {
+    wx.showModal({
+      title: '必填',
+      content: '请填写最大报名人数~',
+      success (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+        
+      }
+    })
+    return
+  }
     // create activity
     app.cloud.callContainer({
       config: {
@@ -84,15 +134,12 @@ Component({
         "headcount": this.data.headcount,
       },
     }).then(res => {
+      console.log("created activity: ", res)
       this.setData({
-        activity_id: res.data.id
+        activity_id: res.data.activity_id,
+        is_created: true
       })
     })
-    return {
-      "title": "Sign up",
-      "path": "/pages/signUp/index?id="+this.data.activity_id,
-      "imageUrl": ""
-    }
   },
   onPageScroll() {
     // 页面滚动时执行
